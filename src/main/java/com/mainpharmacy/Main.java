@@ -1,7 +1,10 @@
 package com.mainpharmacy;
 
+import com.mainpharmacy.country.infraestructure.countryui.CountryUI;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        CountryUI countryUI = new CountryUI();
+        countryUI.startCountry();
     }
 }
