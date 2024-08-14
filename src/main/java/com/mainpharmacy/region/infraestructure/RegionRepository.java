@@ -47,7 +47,7 @@ public class RegionRepository implements RegionService {
     @Override
     public List<Region> findAllRegion() {
         List<Region> regions = new ArrayList<>();
-        String query = "SELECT r.codereg, r.namereg , c.Name as Country FROM region r JOIN country c ON c.codecountry = r.codecountry";
+        String query = "SELECT r.codereg, r.namereg , c.namecountry as Country FROM region r JOIN country c ON c.codecountry = r.codecountry";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             try (ResultSet rs = ps.executeQuery()) {

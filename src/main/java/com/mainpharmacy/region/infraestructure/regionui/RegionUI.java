@@ -102,11 +102,11 @@ public class RegionUI extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-            // if (e.getSource()==addButton){
-            // this.setVisible(false);
-            // AddRegionUI addRegionUI = new AddRegionUI();
-            // addRegionUI.startAddRegion(); 
-        // }
+        if (e.getSource()==addButton){
+            this.setVisible(false);
+            AddRegionUI addRegionUI = new AddRegionUI();
+            addRegionUI.startAddRegion(); 
+        }
         
         if(e.getSource()==deleteButton){
             // this.setVisible(false);
