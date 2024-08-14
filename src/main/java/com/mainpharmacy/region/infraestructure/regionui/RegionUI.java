@@ -109,9 +109,9 @@ public class RegionUI extends JFrame implements ActionListener{
         }
         
         if(e.getSource()==deleteButton){
-            // this.setVisible(false);
-            // DeleteRegionUI deleteRegionUI = new DeleteRegionUI();
-            // deleteRegionUI.startDeleteRegion();
+            this.setVisible(false);
+            DeleteRegionUI deleteRegionUI = new DeleteRegionUI();
+            deleteRegionUI.startDeleteRegion();
         }
 
         if (e.getSource()==allRegionButton){
@@ -133,6 +133,16 @@ public class RegionUI extends JFrame implements ActionListener{
         JOptionPane.showMessageDialog(null, scrollPane, "Region List", JOptionPane.PLAIN_MESSAGE);
         }
 
+        if(e.getSource()==updateButton){
+            this.setVisible(false);
+            UpdateRegionUI UpdateRegionUI = new UpdateRegionUI();
+            UpdateRegionUI.startUpdateRegion();
+        }
+        if(e.getSource()==findButton){
+            this.setVisible(false);
+            FindRegionUI FindRegionUI = new FindRegionUI();
+            FindRegionUI.startFindRegion();
+        }
         // if(e.getSource()==backButton){
         //     this.setVisible(false);
         //     Main main = new Main();

@@ -12,5 +12,6 @@ public interface RegionService {
     List<Region> findAllRegionByCountry(String CountryID);
     Optional<Region> deleteRegionByName(String CountryID, String name);
     Optional<Region> findRegionByName(String CountryID, String name);
-    Optional<Region> findRegionByID(String RegionID);
+    Optional<Region> findRegionByCode(String RegionID);
+    void updateRegion(Region region);
 }

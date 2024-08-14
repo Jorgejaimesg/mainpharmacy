@@ -12,7 +12,7 @@ public class FindRegionByCodeUseCase {
         this.regionService = regionService;
     }
 
-    public Optional<Region> findRegionByID(String regionBox) {
-        return regionService.findRegionByID(regionBox);
+    public Optional<Region> findRegionByCode(String regionBox) {
+        return regionService.findRegionByCode(regionBox);
     }
 }

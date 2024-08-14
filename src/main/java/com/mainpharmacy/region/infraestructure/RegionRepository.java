@@ -124,7 +124,7 @@ public class RegionRepository implements RegionService {
     }
 
     @Override
-    public Optional<Region> findRegionByID(String RegionID) {
+    public Optional<Region> findRegionByCode(String RegionID) {
         String query = "SELECT codereg, namereg, codecountry FROM Region WHERE codereg=?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -144,5 +144,20 @@ public class RegionRepository implements RegionService {
         }
         return Optional.empty();
     }
+
+    @Override
+    public void updateRegion(Region region) {
+        String query = "UPDATE region SET codecountry = ?, namereg = ? WHERE codereg = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, region.getCodeCountry());
+            ps.setString(2, region.getNamereg());
+            ps.setString(3, region.getCodereg());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    } 
+    
 
 }

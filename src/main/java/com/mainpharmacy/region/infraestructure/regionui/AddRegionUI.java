@@ -49,7 +49,7 @@ public class AddRegionUI extends JFrame implements ActionListener {
         getContentPane().setBackground(new Color(200, 200, 200));
         setIconImage(new ImageIcon(getClass().getClassLoader().getResource("images/icon.png")).getImage());
 
-        ImageIcon imagenOriginal = new ImageIcon(getClass().getClassLoader().getResource("images/Region.png"));
+        ImageIcon imagenOriginal = new ImageIcon(getClass().getClassLoader().getResource("images/Regions.png"));
         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
         ImageIcon imagen = new ImageIcon(imagenRedimensionada);
 
@@ -58,7 +58,7 @@ public class AddRegionUI extends JFrame implements ActionListener {
         add(logoImg);
 
         title = new JLabel("Add Region");
-        title.setBounds(180, 20, 400, 90);
+        title.setBounds(250, 20, 400, 90);
         title.setFont(new Font("Andale Mono", Font.BOLD, 30));
         title.setForeground(new Color(0, 0, 100));
         add(title);

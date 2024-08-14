@@ -120,7 +120,7 @@ public class CountryRepository implements CountryService {
 
     @Override
     public void updateCountry(Country country) {
-        String query = "UPDATE country SET namecountry = ? WHERE codeCountry = ?";
+        String query = "UPDATE country SET namecountry = ? WHERE codecountry = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, country.getName());
