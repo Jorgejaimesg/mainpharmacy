@@ -1,5 +1,4 @@
-package com.mainpharmacy.country.infraestructure.countryui;
-
+package com.mainpharmacy.region.infraestructure.regionui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -16,25 +15,24 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import com.mainpharmacy.country.aplication.FindAllCountryUseCase;
-import com.mainpharmacy.country.domain.entity.Country;
-import com.mainpharmacy.country.domain.service.CountryService;
-import com.mainpharmacy.country.infraestructure.CountryRepository;
+import com.mainpharmacy.region.domain.entity.Region;
+import com.mainpharmacy.region.domain.service.RegionService;
+import com.mainpharmacy.region.infraestructure.RegionRepository;
+import com.mainpharmacy.region.aplication.FindAllregionUseCase;
 
-public class CountryUI extends JFrame implements ActionListener{
+public class RegionUI extends JFrame implements ActionListener{
     private JLabel title, logoImg;
-    private JButton addButton, deleteButton, updateButton, findButton, allCountryButton, backButton;
+    private JButton addButton, deleteButton, updateButton, findButton, allRegionButton, backButton;
 
-    public CountryUI(){
-
+    public RegionUI(){
 
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Countries");
+        setTitle("Regions");
         getContentPane().setBackground(new Color(200, 200, 200));
         setIconImage(new ImageIcon(getClass().getClassLoader().getResource("images/icon.png")).getImage());
 
-        ImageIcon imagenOriginal = new ImageIcon(getClass().getClassLoader().getResource("images/CountryImg.png"));
+        ImageIcon imagenOriginal = new ImageIcon(getClass().getClassLoader().getResource("images/regions.png"));
         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
         ImageIcon imagen = new ImageIcon(imagenRedimensionada);
 
@@ -42,7 +40,7 @@ public class CountryUI extends JFrame implements ActionListener{
         logoImg.setBounds(10, 40, 500, 500);
         add(logoImg);
 
-        title = new JLabel("Countries");
+        title = new JLabel("Regions");
         title.setBounds(480, 10, 500, 300);
         title.setFont(new Font("Andale Mono", Font.BOLD, 90));
         title.setForeground(new Color(0, 0, 100));
@@ -86,64 +84,53 @@ public class CountryUI extends JFrame implements ActionListener{
 
 
 
-        allCountryButton = new JButton("All countries");
-        allCountryButton.setBounds(520, 415, 330, 60);
-        allCountryButton.setFont(new Font("Andale Mono", Font.PLAIN, 25));
-        allCountryButton.setForeground(new Color(0, 0, 100));
-        allCountryButton.addActionListener(this);
-        add(allCountryButton);
+        allRegionButton = new JButton("All Regions");
+        allRegionButton.setBounds(520, 415, 330, 60);
+        allRegionButton.setFont(new Font("Andale Mono", Font.PLAIN, 25));
+        allRegionButton.setForeground(new Color(0, 0, 100));
+        allRegionButton.addActionListener(this);
+        add(allRegionButton);
     }
-    public void startCountry() {
-        CountryUI countryUI = new CountryUI();
-        countryUI.setBounds(0, 0, 1000, 600);
-        countryUI.setVisible(true);
-        countryUI.setResizable(false);
-        countryUI.setLocationRelativeTo(null);
+
+        public void startRegion() {
+        RegionUI RegionUI = new RegionUI();
+        RegionUI.setBounds(0, 0, 1000, 600);
+        RegionUI.setVisible(true);
+        RegionUI.setResizable(false);
+        RegionUI.setLocationRelativeTo(null);
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==addButton){
-            this.setVisible(false);
-            AddCountryUI addCountryUI = new AddCountryUI();
-            addCountryUI.startAddCountry();
-        }
+            // if (e.getSource()==addButton){
+            // this.setVisible(false);
+            // AddRegionUI addRegionUI = new AddRegionUI();
+            // addRegionUI.startAddRegion(); 
+        // }
         
         if(e.getSource()==deleteButton){
-            this.setVisible(false);
-            DeleteCountryUI deleteCountryUI = new DeleteCountryUI();
-            deleteCountryUI.startDeleteCountry();
+            // this.setVisible(false);
+            // DeleteRegionUI deleteRegionUI = new DeleteRegionUI();
+            // deleteRegionUI.startDeleteRegion();
         }
 
-        if(e.getSource()==findButton){
-            this.setVisible(false);
-            FindCountryUI FindCountryUI = new FindCountryUI();
-            FindCountryUI.startFindCountry();
-        }
+        if (e.getSource()==allRegionButton){
+                RegionService RegionService = new RegionRepository();
+                FindAllregionUseCase findAllRegionUseCase = new FindAllregionUseCase(RegionService);
+                List<Region> Regions = findAllRegionUseCase.findAllRegion();
         
-
-        if(e.getSource()==updateButton){
-            this.setVisible(false);
-            UpdateCountryUI updateCountryUI = new UpdateCountryUI();
-            updateCountryUI.startUpdateCountry();
-        }
-
-        if (e.getSource()==allCountryButton){
-                CountryService countryService = new CountryRepository();
-                FindAllCountryUseCase findAllCountrysUseCase = new FindAllCountryUseCase(countryService);
-                List<Country> Countries = findAllCountrysUseCase.findAllCountry();
-        
-                String[] columns = {"ID", "Name"};
+                String[] columns = {"ID", "Region", "City"};
                 DefaultTableModel defaultTableModel = new DefaultTableModel(columns, 0);
 
-                Countries.forEach(Country -> {
-                    Object[] row = {Country.getCodeCountry(), Country.getName()};
+                Regions.forEach(Region -> {
+                    Object[] row = {Region.getCodereg(), Region.getNamereg(), Region.getCodeCountry() };
                     defaultTableModel.addRow(row);
                 });
 
         JTable table = new JTable(defaultTableModel);
         JScrollPane scrollPane = new JScrollPane(table);
 
-        JOptionPane.showMessageDialog(null, scrollPane, "Country List", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, scrollPane, "Region List", JOptionPane.PLAIN_MESSAGE);
         }
 
         // if(e.getSource()==backButton){
@@ -151,7 +138,5 @@ public class CountryUI extends JFrame implements ActionListener{
         //     Main main = new Main();
         //     main.startMenu();
         // }
-
-        }
-    }
-
+}
+}
