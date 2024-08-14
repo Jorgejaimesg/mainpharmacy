@@ -61,7 +61,7 @@ CREATE TABLE farmacy (
     idfarmacy INT AUTO_INCREMENT PRIMARY KEY,
     namefarmacy VARCHAR(60) NOT NULL,
     addressfarmacy VARCHAR(100) NOT NULL,
-    `long` DOUBLE NOT NULL,
+    longfarmacy DOUBLE NOT NULL,
     latfarmacy DOUBLE NOT NULL,
     codecityfarm VARCHAR(5) NOT NULL,
     logofarmacy VARCHAR(50),
@@ -75,7 +75,7 @@ CREATE TABLE customer (
     codecitycustomer VARCHAR(5) NOT NULL,
     emailcustomer VARCHAR(100),
     birthdate DATE,
-    lon DOUBLE,
+    longitude DOUBLE,
     latitud DOUBLE,
     FOREIGN KEY (codecitycustomer) REFERENCES city(codecity)
 );

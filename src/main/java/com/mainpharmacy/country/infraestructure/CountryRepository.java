@@ -31,7 +31,7 @@ public class CountryRepository implements CountryService {
     @Override
     public void createCountry(Country country) {
             try {
-            String query = "INSERT INTO country (codecountry, namecountry) VALUES (?)(?)";
+            String query = "INSERT INTO country (codecountry, namecountry) VALUES (?,?)";
             PreparedStatement ps = connection.prepareStatement(query);
 
             ps.setString(1, country.getCodeCountry());
@@ -43,11 +43,11 @@ public class CountryRepository implements CountryService {
     }
 
     @Override
-    public Country deleteCountry(String name) {
+    public Country deleteCountry(String Name) {
         String query = "DELETE FROM country WHERE namecountry = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, name);
+            ps.setString(1, Name);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,7 +65,7 @@ public class CountryRepository implements CountryService {
                 if (rs.next()) {
                     Country country = new Country(
                             rs.getString("codeCountry"),
-                            rs.getString("name"));
+                            rs.getString("namecountry"));
                     return Optional.of(country);
                 }
 
@@ -86,7 +86,7 @@ public class CountryRepository implements CountryService {
                 if (rs.next()) {
                     Country country = new Country(
                             rs.getString("codeCountry"),
-                            rs.getString("name"));
+                            rs.getString("namecountry"));
                     return Optional.of(country);
                 }
 
@@ -108,7 +108,7 @@ public class CountryRepository implements CountryService {
                 while (rs.next()) {
                     Country country = new Country(
                         rs.getString("codeCountry"),
-                        rs.getString("name"));
+                        rs.getString("namecountry"));
                         countries.add(country);
                 }
             }
@@ -125,6 +125,7 @@ public class CountryRepository implements CountryService {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, country.getName());
             ps.setString(2, country.getCodeCountry());
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

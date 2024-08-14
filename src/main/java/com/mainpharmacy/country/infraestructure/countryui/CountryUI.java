@@ -116,10 +116,15 @@ setLayout(null);
 
         if(e.getSource()==findButton){
             this.setVisible(false);
+            FindCountryUI FindCountryUI = new FindCountryUI();
+            FindCountryUI.startFindCountry();
         }
+        
 
         if(e.getSource()==updateButton){
             this.setVisible(false);
+            UpdateCountryUI updateCountryUI = new UpdateCountryUI();
+            updateCountryUI.startUpdateCountry();
         }
 
         if (e.getSource()==allCountryButton){

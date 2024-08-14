@@ -52,8 +52,8 @@ public class DeleteCountryUI extends JFrame implements ActionListener{
         title.setForeground(new Color(0, 0, 100));
         add(title);
 
-        labelName = new JLabel("Country Name : ");
-        labelName.setBounds(35, 130, 150, 30);
+        labelName = new JLabel("Country: ");
+        labelName.setBounds(65, 130, 150, 30);
         labelName.setFont(new Font("Andale Mono", Font.PLAIN, 20));
         labelName.setForeground(new Color(0, 0, 100));
         add(labelName);
@@ -87,7 +87,7 @@ public class DeleteCountryUI extends JFrame implements ActionListener{
 
     public void startDeleteCountry() {
         DeleteCountryUI deleteUIA = new DeleteCountryUI();
-        deleteUIA.setBounds(0, 0, 500, 400);
+        deleteUIA.setBounds(0, 0, 500, 300);
         deleteUIA.setVisible(true);
         deleteUIA.setResizable(false);
         deleteUIA.setLocationRelativeTo(null);

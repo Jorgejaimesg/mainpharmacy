@@ -11,6 +11,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+
+import com.mainpharmacy.country.aplication.CreateCountryUseCase;
+import com.mainpharmacy.country.domain.entity.Country;
+import com.mainpharmacy.country.infraestructure.CountryRepository;
+import com.mainpharmacy.country.domain.service.CountryService;
 
 public class AddCountryUI extends JFrame implements ActionListener{
     private JLabel logoImg, title, labelName, labelcode;
@@ -39,8 +45,8 @@ public class AddCountryUI extends JFrame implements ActionListener{
         title.setForeground(new Color(0, 0, 100));
         add(title);
 
-        labelcode = new JLabel("Country code : ");
-        labelcode.setBounds(35, 130, 150, 30);
+        labelcode = new JLabel("Code : ");
+        labelcode.setBounds(100, 130, 150, 30);
         labelcode.setFont(new Font("Andale Mono", Font.PLAIN, 20));
         labelcode.setForeground(new Color(0, 0, 100));
         add(labelcode);
@@ -51,8 +57,8 @@ public class AddCountryUI extends JFrame implements ActionListener{
         codecountry.setForeground(new Color(0, 0, 100));
         add(codecountry);
 
-        labelName = new JLabel("Country Name : ");
-        labelName.setBounds(35, 170, 150, 30);
+        labelName = new JLabel("Name : ");
+        labelName.setBounds(95, 170, 150, 30);
         labelName.setFont(new Font("Andale Mono", Font.PLAIN, 20));
         labelName.setForeground(new Color(0, 0, 100));
         add(labelName);
@@ -90,8 +96,37 @@ public class AddCountryUI extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+        if (e.getSource()==addButton){
+
+            try {
+                String countryName = Name.getText().trim();
+                String countryCode = codecountry.getText().trim().toUpperCase();
+                if (countryName.length()>0 && countryCode.length()>0){
+                Country newCountry = new Country();
+                
+                newCountry.setName(countryName);
+                newCountry.setCodeCountry(countryCode);
+                
+                CountryService countryService = new CountryRepository();
+                CreateCountryUseCase createCountryUseCase = new CreateCountryUseCase(countryService);
+                createCountryUseCase.execute(newCountry);
+                JOptionPane.showMessageDialog(this, "Country added successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                Name.setText("");
+                codecountry.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid Name.", "Error", JOptionPane.ERROR_MESSAGE);
+
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+    }
+
+    if(e.getSource()==backButton){
+            this.setVisible(false);
+            CountryUI countryUI = new CountryUI();
+            countryUI.startCountry();
+    }
     }
 
     }
