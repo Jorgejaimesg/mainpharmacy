@@ -104,15 +104,15 @@ public class CityUI extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==addButton){
-            // this.setVisible(false);
-            // AddCityUI addCityUI = new AddCityUI();
-            // addCityUI.startAddCity(); 
+            this.setVisible(false);
+            AddCityUI addCityUI = new AddCityUI();
+            addCityUI.startAddCity(); 
         }
         
         if(e.getSource()==deleteButton){
-            // this.setVisible(false);
-            // DeleteCityUI deleteCityUI = new DeleteCityUI();
-            // deleteCityUI.startDeleteCity();
+            this.setVisible(false);
+            DeleteCityUI deleteCityUI = new DeleteCityUI();
+            deleteCityUI.startDeleteCity();
         }
 
         if (e.getSource()==allCityButton){

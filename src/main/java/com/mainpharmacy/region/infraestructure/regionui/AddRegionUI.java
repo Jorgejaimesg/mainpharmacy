@@ -40,7 +40,7 @@ public class AddRegionUI extends JFrame implements ActionListener {
     FindAllCountryUseCase findAllCountryUseCase = new FindAllCountryUseCase(CountryService);
     FindCountryByNameUseCase findCountryByNameUseCase = new FindCountryByNameUseCase(CountryService);
     CreateRegionUseCase createRegionUseCase = new CreateRegionUseCase(RegionService);
-    List<Country> cities = findAllCountryUseCase.findAllCountry();
+    List<Country> countries = findAllCountryUseCase.findAllCountry();
 
     public AddRegionUI(){
         setLayout(null);
@@ -99,7 +99,7 @@ public class AddRegionUI extends JFrame implements ActionListener {
         Country.setForeground(new Color(0, 0, 100));
         add(Country);
         Country.addItem("");
-        for(Country Countryitem : cities){
+        for(Country Countryitem : countries){
             Country.addItem(Countryitem.getName());
         };
 
