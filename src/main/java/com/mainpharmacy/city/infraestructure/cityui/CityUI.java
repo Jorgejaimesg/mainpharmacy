@@ -135,14 +135,14 @@ public class CityUI extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==updateButton){
-        //     this.setVisible(false);
-        //     UpdateCityUI UpdateCityUI = new UpdateCityUI();
-        //     UpdateCityUI.startUpdateCity();
+            this.setVisible(false);
+            UpdateCityUI UpdateCityUI = new UpdateCityUI();
+            UpdateCityUI.startUpdateCity();
         }
         if(e.getSource()==findButton){
-            // this.setVisible(false);
-            // FindCityUI FindCityUI = new FindCityUI();
-            // FindCityUI.startFindCity();
+            this.setVisible(false);
+            FindCityUI FindCityUI = new FindCityUI();
+            FindCityUI.startFindCity();
         }
         // if(e.getSource()==backButton){
         //     this.setVisible(false);

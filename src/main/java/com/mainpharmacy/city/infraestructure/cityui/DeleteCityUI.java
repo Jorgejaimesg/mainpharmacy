@@ -43,7 +43,7 @@ public class DeleteCityUI extends JFrame implements ActionListener {
     FindRegionByCountryUseCase findRegionByCountryUseCase = new FindRegionByCountryUseCase(RegionService);
     FindRegionByNameUseCase findRegionByNameUseCase = new FindRegionByNameUseCase(RegionService);
     DeleteRegionByNameUseCase deleteRegionByNameUseCase = new DeleteRegionByNameUseCase(RegionService);
-    List<Country> cities = findAllCountryUseCase.findAllCountry();
+    List<Country> countries = findAllCountryUseCase.findAllCountry();
 
     private JLabel logoImg, title, labelCountry, labelRegion, labelCity;
     private JButton deleteButton, backButton;
@@ -83,7 +83,7 @@ public class DeleteCityUI extends JFrame implements ActionListener {
         countryBox.setForeground(new Color(0, 0, 100));
         add(countryBox);
         countryBox.addItem("");
-        for(Country country : cities){
+        for(Country country : countries){
             countryBox.addItem(country.getName());
         };
 
@@ -155,15 +155,20 @@ public class DeleteCityUI extends JFrame implements ActionListener {
 
     private void actualizarCity() {
         citybox.removeAllItems();
-        String RegionName = regionBox.getSelectedItem().toString();
-        Optional<Region> RegionFound = findRegionByNameUseCase.execute(countryID, RegionName);
-        if (RegionFound.isPresent()){
-        this.RegionID =RegionFound.get().getCodereg();
-        List<City> Citys = findCityByRegionUseCase.findAllCityByRegion(RegionID);
-        for(City Cityitem : Citys){
-            citybox.addItem(Cityitem.getNamecity());
-        };
-    }}
+        try {
+            String RegionName = regionBox.getSelectedItem().toString();
+            Optional<Region> RegionFound = findRegionByNameUseCase.execute(countryID, RegionName);
+            if (RegionFound.isPresent()){
+            this.RegionID =RegionFound.get().getCodereg();
+            List<City> Citys = findCityByRegionUseCase.findAllCityByRegion(RegionID);
+            for(City Cityitem : Citys){
+                citybox.addItem(Cityitem.getNamecity());
+            };}
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
 
     
     public void startDeleteCity() {

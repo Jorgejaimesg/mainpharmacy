@@ -144,7 +144,7 @@ public class CityRepository implements CityService{
         }
         @Override
         public void updateCity(City City) {
-            String query = "UPDATE City SET coderegion = ?, namecity = ? WHERE codecity = ?";
+            String query = "UPDATE City SET codereg = ?, namecity = ? WHERE codecity = ?";
             try {
                 PreparedStatement ps = connection.prepareStatement(query);
                 ps.setString(1, City.getCodereg());
