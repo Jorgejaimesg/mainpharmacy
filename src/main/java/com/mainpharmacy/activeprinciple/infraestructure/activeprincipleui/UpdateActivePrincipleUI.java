@@ -1,4 +1,4 @@
-package com.mainpharmacy.modeadministration.infraestructure.modeadministrationui;
+package com.mainpharmacy.activeprinciple.infraestructure.activeprincipleui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -13,31 +13,31 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import com.mainpharmacy.modeadministration.aplication.FindModeAdministrationByCodeUseCase;
-import com.mainpharmacy.modeadministration.aplication.UpdateModeAdministrationUseCase;
-import com.mainpharmacy.modeadministration.domain.entity.ModeAdministration;
-import com.mainpharmacy.modeadministration.domain.service.ModeAdministrationService;
-import com.mainpharmacy.modeadministration.infraestructure.ModeAdministrationRepository;
+import com.mainpharmacy.activeprinciple.aplication.FindActivePrincipleByCodeUseCase;
+import com.mainpharmacy.activeprinciple.aplication.UpdateActivePrincipleUseCase;
+import com.mainpharmacy.activeprinciple.domain.entity.ActivePrinciple;
+import com.mainpharmacy.activeprinciple.domain.service.ActivePrincipleService;
+import com.mainpharmacy.activeprinciple.infraestructure.ActivePrincipleRepository;
 
 import javax.swing.JOptionPane;
 
-public class UpdateModeAdministrationUI extends JFrame implements ActionListener {
+public class UpdateActivePrincipleUI extends JFrame implements ActionListener {
     private JLabel  labelcode, title, logoImg, labelName;
-    private JTextField codemodeadministration, Name;
+    private JTextField codeactiveprinciple, Name;
     private JButton updateButton, findButton, backButton;
 
-    ModeAdministrationService modeadministrationService = new ModeAdministrationRepository();
-    FindModeAdministrationByCodeUseCase findModeAdministrationByCodeUseCase = new FindModeAdministrationByCodeUseCase(modeadministrationService);
-    UpdateModeAdministrationUseCase updateModeAdministrationUseCase = new UpdateModeAdministrationUseCase(modeadministrationService);
+    ActivePrincipleService activeprincipleService = new ActivePrincipleRepository();
+    FindActivePrincipleByCodeUseCase findActivePrincipleByCodeUseCase = new FindActivePrincipleByCodeUseCase(activeprincipleService);
+    UpdateActivePrincipleUseCase updateActivePrincipleUseCase = new UpdateActivePrincipleUseCase(activeprincipleService);
 
-    public UpdateModeAdministrationUI(){
+    public UpdateActivePrincipleUI(){
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Update Way");
+        setTitle("Update Active");
         getContentPane().setBackground(new Color(200, 200, 200));
         setIconImage(new ImageIcon(getClass().getClassLoader().getResource("images/icon.png")).getImage());
 
-        ImageIcon imagenOriginal = new ImageIcon(getClass().getClassLoader().getResource("images/ways.png"));
+        ImageIcon imagenOriginal = new ImageIcon(getClass().getClassLoader().getResource("images/chemical.png"));
         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
         ImageIcon imagen = new ImageIcon(imagenRedimensionada);
 
@@ -45,7 +45,7 @@ public class UpdateModeAdministrationUI extends JFrame implements ActionListener
         logoImg.setBounds(80, 20, 90, 90);
         add(logoImg);
 
-        title = new JLabel("Update Way");
+        title = new JLabel("Update Active");
         title.setBounds(200, 20, 400, 90);
         title.setFont(new Font("Andale Mono", Font.BOLD, 35));
         title.setForeground(new Color(0, 0, 100));
@@ -57,11 +57,11 @@ public class UpdateModeAdministrationUI extends JFrame implements ActionListener
         labelcode.setForeground(new Color(0, 0, 100));
         add(labelcode);
 
-        codemodeadministration = new JTextField();
-        codemodeadministration.setBounds(170, 130, 220, 30);
-        codemodeadministration.setFont(new Font("Andale Mono", Font.PLAIN, 20));
-        codemodeadministration.setForeground(new Color(0, 0, 100));
-        add(codemodeadministration);
+        codeactiveprinciple = new JTextField();
+        codeactiveprinciple.setBounds(170, 130, 220, 30);
+        codeactiveprinciple.setFont(new Font("Andale Mono", Font.PLAIN, 20));
+        codeactiveprinciple.setForeground(new Color(0, 0, 100));
+        add(codeactiveprinciple);
 
         labelName = new JLabel("Name : ");
         labelName.setBounds(95, 170, 150, 30);
@@ -99,8 +99,8 @@ public class UpdateModeAdministrationUI extends JFrame implements ActionListener
 
     }
 
-    public void startUpdateModeAdministration() {
-        UpdateModeAdministrationUI updateUI = new UpdateModeAdministrationUI();
+    public void startUpdateActivePrinciple() {
+        UpdateActivePrincipleUI updateUI = new UpdateActivePrincipleUI();
         updateUI.setBounds(0, 0, 520, 350);
         updateUI.setVisible(true);
         updateUI.setResizable(false);
@@ -112,14 +112,14 @@ public class UpdateModeAdministrationUI extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==findButton){
             try {
-                int modeadministrationCode = Integer.parseInt(codemodeadministration.getText().trim().toUpperCase());
-                if (modeadministrationCode>0){
-                    Optional<ModeAdministration> modeadministration = findModeAdministrationByCodeUseCase.findModeAdministrationByCode(modeadministrationCode);
-                    if (modeadministration.isPresent()){
+                int activeprincipleCode = Integer.parseInt(codeactiveprinciple.getText().trim().toUpperCase());
+                if (activeprincipleCode>0){
+                    Optional<ActivePrinciple> activeprinciple = findActivePrincipleByCodeUseCase.findActivePrincipleByCode(activeprincipleCode);
+                    if (activeprinciple.isPresent()){
                         Name.setVisible(true);
-                        Name.setText(modeadministration.get().getDescriptionmode());
+                        Name.setText(activeprinciple.get().getDescriptionmode());
                     } else {
-                        JOptionPane.showMessageDialog(this, "The ModeAdministration doesn't exist", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "The ActivePrinciple doesn't exist", "Error", JOptionPane.ERROR_MESSAGE);
 
                     }
                 } else {
@@ -132,28 +132,28 @@ public class UpdateModeAdministrationUI extends JFrame implements ActionListener
         }
 
         if(e.getSource()==updateButton){
-            int modeadministrationid = Integer.parseInt(codemodeadministration.getText().trim());
-            String modeadministrationName = Name.getText().trim();
-            ModeAdministration updatedModeAdministration = new ModeAdministration();
-            updatedModeAdministration.setDescriptionmode(modeadministrationName);
-            updatedModeAdministration.setId(modeadministrationid);
-            if (modeadministrationName.length()>0){
-                updateModeAdministrationUseCase.execute(updatedModeAdministration);
+            String activeprincipleName = Name.getText().trim();
+            int idActivePrincipale = Integer.parseInt(codeactiveprinciple.getText().trim());
+            ActivePrinciple updatedActivePrinciple = new ActivePrinciple();
+            updatedActivePrinciple.setDescriptionmode(activeprincipleName);
+            updatedActivePrinciple.setId(idActivePrincipale);
+            if (activeprincipleName.length()>0){
+                updateActivePrincipleUseCase.execute(updatedActivePrinciple);
                 JOptionPane.showMessageDialog(this, "Updated succesfully", "succes", JOptionPane.INFORMATION_MESSAGE);
             }else {
                 JOptionPane.showMessageDialog(this, "Error to update", "Error", JOptionPane.ERROR_MESSAGE);
 
             }
-            System.out.println(updatedModeAdministration);
+            System.out.println(updatedActivePrinciple);
             Name.setText("");
-            codemodeadministration.setText("");
+            codeactiveprinciple.setText("");
             Name.setVisible(false);
     }
 
         if(e.getSource()==backButton){
             this.setVisible(false);
-            ModeAdministrationUI modeadministrationUI = new ModeAdministrationUI();
-            modeadministrationUI.startModeAdministration();
+            ActivePrincipleUI activeprincipleUI = new ActivePrincipleUI();
+            activeprincipleUI.startActivePrinciple();
         }
     }
     }
