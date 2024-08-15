@@ -16,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.mainpharmacy.city.domain.entity.CityShow;
+import com.mainpharmacy.Main;
 import com.mainpharmacy.city.aplication.FindAllCityUseCase;
 import com.mainpharmacy.city.domain.service.CityService;
 import com.mainpharmacy.city.infraestructure.CityRepository;
@@ -144,10 +145,10 @@ public class CityUI extends JFrame implements ActionListener{
             FindCityUI FindCityUI = new FindCityUI();
             FindCityUI.startFindCity();
         }
-        // if(e.getSource()==backButton){
-        //     this.setVisible(false);
-        //     Main main = new Main();
-        //     main.startMenu();
-        // }
+        if(e.getSource()==backButton){
+            this.setVisible(false);
+            Main main = new Main();
+            main.startMenu();
+        }
     }
 }

@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.mainpharmacy.Main;
 import com.mainpharmacy.country.aplication.FindAllCountryUseCase;
 import com.mainpharmacy.country.domain.entity.Country;
 import com.mainpharmacy.country.domain.service.CountryService;
@@ -146,11 +147,11 @@ public class CountryUI extends JFrame implements ActionListener{
         JOptionPane.showMessageDialog(null, scrollPane, "Country List", JOptionPane.PLAIN_MESSAGE);
         }
 
-        // if(e.getSource()==backButton){
-        //     this.setVisible(false);
-        //     Main main = new Main();
-        //     main.startMenu();
-        // }
+        if(e.getSource()==backButton){
+            this.setVisible(false);
+            Main main = new Main();
+            main.startMenu();
+        }
 
         }
     }

@@ -27,7 +27,7 @@ public class AddModeAdministrationUI extends JFrame implements ActionListener{
 
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Add Way");
+        setTitle("Add Method");
         getContentPane().setBackground(new Color(200, 200, 200));
         setIconImage(new ImageIcon(getClass().getClassLoader().getResource("images/icon.png")).getImage());
 
@@ -39,7 +39,7 @@ public class AddModeAdministrationUI extends JFrame implements ActionListener{
         logoImg.setBounds(80, 20, 90, 90);
         add(logoImg);
 
-        title = new JLabel("Add Way");
+        title = new JLabel("Add Method");
         title.setBounds(200, 20, 400, 90);
         title.setFont(new Font("Andale Mono", Font.BOLD, 35));
         title.setForeground(new Color(0, 0, 100));

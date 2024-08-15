@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.mainpharmacy.Main;
 import com.mainpharmacy.unitmeasurement.aplication.FindAllUnitMeasurementUseCase;
 import com.mainpharmacy.unitmeasurement.domain.entity.UnitMeasurement;
 import com.mainpharmacy.unitmeasurement.domain.service.UnitMeasurementService;
@@ -146,11 +147,11 @@ public class UnitMeasurementUI extends JFrame implements ActionListener{
         JOptionPane.showMessageDialog(null, scrollPane, "UnitMeasurement List", JOptionPane.PLAIN_MESSAGE);
         }
 
-        // if(e.getSource()==backButton){
-        //     this.setVisible(false);
-        //     Main main = new Main();
-        //     main.startMenu();
-        // }
+        if(e.getSource()==backButton){
+            this.setVisible(false);
+            Main main = new Main();
+            main.startMenu();
+        }
 
         }
     }

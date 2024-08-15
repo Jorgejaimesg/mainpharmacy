@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import com.mainpharmacy.region.domain.entity.Region;
 import com.mainpharmacy.region.domain.service.RegionService;
 import com.mainpharmacy.region.infraestructure.RegionRepository;
+import com.mainpharmacy.Main;
 import com.mainpharmacy.region.aplication.FindAllregionUseCase;
 
 public class RegionUI extends JFrame implements ActionListener{
@@ -143,10 +144,10 @@ public class RegionUI extends JFrame implements ActionListener{
             FindRegionUI FindRegionUI = new FindRegionUI();
             FindRegionUI.startFindRegion();
         }
-        // if(e.getSource()==backButton){
-        //     this.setVisible(false);
-        //     Main main = new Main();
-        //     main.startMenu();
-        // }
+        if(e.getSource()==backButton){
+            this.setVisible(false);
+            Main main = new Main();
+            main.startMenu();
+        }
 }
 }

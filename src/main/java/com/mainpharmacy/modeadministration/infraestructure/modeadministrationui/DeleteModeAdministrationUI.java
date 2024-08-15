@@ -46,13 +46,13 @@ public class DeleteModeAdministrationUI extends JFrame implements ActionListener
         logoImg.setBounds(80, 20, 90, 90);
         add(logoImg);
 
-        title = new JLabel("Delete Way");
+        title = new JLabel("Delete Method");
         title.setBounds(180, 20, 400, 90);
         title.setFont(new Font("Andale Mono", Font.BOLD, 35));
         title.setForeground(new Color(0, 0, 100));
         add(title);
 
-        labelName = new JLabel("Way: ");
+        labelName = new JLabel("Method: ");
         labelName.setBounds(65, 130, 150, 30);
         labelName.setFont(new Font("Andale Mono", Font.PLAIN, 20));
         labelName.setForeground(new Color(0, 0, 100));

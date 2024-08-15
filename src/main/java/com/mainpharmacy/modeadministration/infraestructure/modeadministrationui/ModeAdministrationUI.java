@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.mainpharmacy.Main;
 import com.mainpharmacy.modeadministration.aplication.FindAllModeAdministrationUseCase;
 import com.mainpharmacy.modeadministration.domain.entity.ModeAdministration;
 import com.mainpharmacy.modeadministration.domain.service.ModeAdministrationService;
@@ -30,7 +31,7 @@ public class ModeAdministrationUI extends JFrame implements ActionListener{
 
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Ways");
+        setTitle("Methods");
         getContentPane().setBackground(new Color(200, 200, 200));
         setIconImage(new ImageIcon(getClass().getClassLoader().getResource("images/icon.png")).getImage());
 
@@ -42,7 +43,7 @@ public class ModeAdministrationUI extends JFrame implements ActionListener{
         logoImg.setBounds(10, 40, 500, 500);
         add(logoImg);
 
-        title = new JLabel("Ways");
+        title = new JLabel("Methods");
         title.setBounds(480, 10, 500, 300);
         title.setFont(new Font("Andale Mono", Font.BOLD, 90));
         title.setForeground(new Color(0, 0, 100));
@@ -86,7 +87,7 @@ public class ModeAdministrationUI extends JFrame implements ActionListener{
 
 
 
-        allModeAdministrationButton = new JButton("All Ways");
+        allModeAdministrationButton = new JButton("All Methods");
         allModeAdministrationButton.setBounds(520, 415, 330, 60);
         allModeAdministrationButton.setFont(new Font("Andale Mono", Font.PLAIN, 25));
         allModeAdministrationButton.setForeground(new Color(0, 0, 100));
@@ -146,11 +147,11 @@ public class ModeAdministrationUI extends JFrame implements ActionListener{
         JOptionPane.showMessageDialog(null, scrollPane, "ModeAdministration List", JOptionPane.PLAIN_MESSAGE);
         }
 
-        // if(e.getSource()==backButton){
-        //     this.setVisible(false);
-        //     Main main = new Main();
-        //     main.startMenu();
-        // }
+        if(e.getSource()==backButton){
+            this.setVisible(false);
+            Main main = new Main();
+            main.startMenu();
+        }
 
         }
     }

@@ -191,7 +191,7 @@ public class DeleteCityUI extends JFrame implements ActionListener {
             deleteCityByNameUseCase.execute(RegionID, CityName);
 
 
-            JOptionPane.showMessageDialog(this, "City added successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "City deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
             countryBox.setSelectedItem("");
             citybox.removeAllItems(); 
             } else {

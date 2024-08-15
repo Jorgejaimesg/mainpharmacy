@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.mainpharmacy.Main;
 import com.mainpharmacy.activeprinciple.aplication.FindAllActivePrincipleUseCase;
 import com.mainpharmacy.activeprinciple.domain.entity.ActivePrinciple;
 import com.mainpharmacy.activeprinciple.domain.service.ActivePrincipleService;
@@ -146,11 +147,11 @@ public class ActivePrincipleUI extends JFrame implements ActionListener{
         JOptionPane.showMessageDialog(null, scrollPane, "ActivePrinciple List", JOptionPane.PLAIN_MESSAGE);
         }
 
-        // if(e.getSource()==backButton){
-        //     this.setVisible(false);
-        //     Main main = new Main();
-        //     main.startMenu();
-        // }
+        if(e.getSource()==backButton){
+            this.setVisible(false);
+            Main main = new Main();
+            main.startMenu();
+        }
 
         }
     }

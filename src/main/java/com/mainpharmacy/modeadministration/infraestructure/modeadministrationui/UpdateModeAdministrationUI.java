@@ -33,7 +33,7 @@ public class UpdateModeAdministrationUI extends JFrame implements ActionListener
     public UpdateModeAdministrationUI(){
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Update Way");
+        setTitle("Update Method");
         getContentPane().setBackground(new Color(200, 200, 200));
         setIconImage(new ImageIcon(getClass().getClassLoader().getResource("images/icon.png")).getImage());
 
@@ -45,7 +45,7 @@ public class UpdateModeAdministrationUI extends JFrame implements ActionListener
         logoImg.setBounds(80, 20, 90, 90);
         add(logoImg);
 
-        title = new JLabel("Update Way");
+        title = new JLabel("Update Method");
         title.setBounds(200, 20, 400, 90);
         title.setFont(new Font("Andale Mono", Font.BOLD, 35));
         title.setForeground(new Color(0, 0, 100));
