@@ -1,10 +1,10 @@
 package com.mainpharmacy;
 
-import com.mainpharmacy.city.infraestructure.cityui.CityUI;
+import com.mainpharmacy.modeadministration.infraestructure.modeadministrationui.ModeAdministrationUI;
 
 public class Main {
     public static void main(String[] args) {
-        CityUI CityUI = new CityUI();
-        CityUI.startCity();
+        ModeAdministrationUI modeAdministrationUI = new ModeAdministrationUI();
+        modeAdministrationUI.startModeAdministration();
     }
 }
