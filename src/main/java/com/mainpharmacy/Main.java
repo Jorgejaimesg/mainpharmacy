@@ -1,10 +1,10 @@
 package com.mainpharmacy;
 
-import com.mainpharmacy.modeadministration.infraestructure.modeadministrationui.ModeAdministrationUI;
+import com.mainpharmacy.unitmeasurement.infraestructure.unitmeasurementui.UnitMeasurementUI;
 
 public class Main {
     public static void main(String[] args) {
-        ModeAdministrationUI modeAdministrationUI = new ModeAdministrationUI();
-        modeAdministrationUI.startModeAdministration();
+        UnitMeasurementUI modeAdministrationUI = new UnitMeasurementUI();
+        modeAdministrationUI.startUnitMeasurement();
     }
 }
