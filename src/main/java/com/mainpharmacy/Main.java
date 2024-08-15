@@ -1,10 +1,10 @@
 package com.mainpharmacy;
 
-import com.mainpharmacy.region.infraestructure.regionui.RegionUI;
+import com.mainpharmacy.city.infraestructure.cityui.CityUI;
 
 public class Main {
     public static void main(String[] args) {
-        RegionUI RegionUI = new RegionUI();
-        RegionUI.startRegion();
+        CityUI CityUI = new CityUI();
+        CityUI.startCity();
     }
 }
