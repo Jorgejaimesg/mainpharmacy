@@ -1,7 +1,6 @@
 package com.mainpharmacy.laboratory.infraestructure.laboratoryui;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -34,7 +33,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class FindLaboratoryUI extends JFrame implements ActionListener{
-    private JLabel  labelCode, title, logoImg, labelName, labelRegion, CityName, Name, Region, labelCity, labelCountry, country, CountryName, RegionName;
+    private JLabel  labelCode, title, logoImg, labelName, labelRegion, CityName, Name, labelCity, labelCountry, CountryName, RegionName;
     private JButton NewButton, findButton, backButton;
     private JTextField Code;
 
