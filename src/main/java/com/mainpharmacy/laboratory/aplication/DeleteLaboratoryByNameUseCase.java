@@ -1,17 +1,17 @@
-package com.mainpharmacy.city.aplication;
+package com.mainpharmacy.laboratory.aplication;
 
 import java.util.Optional;
-import com.mainpharmacy.city.domain.entity.City;
-import com.mainpharmacy.city.domain.service.CityService;
+import com.mainpharmacy.laboratory.domain.entity.Laboratory;
+import com.mainpharmacy.laboratory.domain.service.LaboratoryService;
 
 public class DeleteLaboratoryByNameUseCase {
-    private final CityService CityService;
+    private final LaboratoryService LaboratoryService;
 
-    public DeleteLaboratoryByNameUseCase(CityService CityService) {
-        this.CityService = CityService;
+    public DeleteLaboratoryByNameUseCase(LaboratoryService LaboratoryService) {
+        this.LaboratoryService = LaboratoryService;
     }
 
-    public Optional<City> execute(String regionCode, String Name ) {
-        return CityService.deleteCityByName(regionCode, Name);
+    public Optional<Laboratory> execute(String cityCode, String Name ) {
+        return LaboratoryService.deleteLaboratoryByName(cityCode, Name);
     }
 }

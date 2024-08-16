@@ -17,7 +17,7 @@ CREATE TABLE city (
     FOREIGN KEY (codereg) REFERENCES region(codereg)
 );
 
-CREATE TABLE labatory (
+CREATE TABLE laboratory (
     id INT AUTO_INCREMENT PRIMARY KEY,
     namelab VARCHAR(50) NOT NULL,
     codecityreg VARCHAR(5) NOT NULL,

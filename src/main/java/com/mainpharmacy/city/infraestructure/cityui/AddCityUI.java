@@ -182,7 +182,6 @@ public class AddCityUI extends JFrame implements ActionListener {
                     if(RegionFound.isPresent()){
 
                         String RegionID = RegionFound.get().getCodereg();
-                        System.out.println(RegionID);
                         String CityName = Name.getText().trim();
                         String Codecity = Code.getText().trim().toUpperCase();
                         if (CityName.length()>0){

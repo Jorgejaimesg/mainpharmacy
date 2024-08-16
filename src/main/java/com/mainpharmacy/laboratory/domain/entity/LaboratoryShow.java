@@ -1,23 +1,31 @@
-package com.mainpharmacy.city.domain.entity;
+package com.mainpharmacy.laboratory.domain.entity;
 
 public class LaboratoryShow {
-    private String codecity;
+    private int id;
+    private String namelab;
     private String namecity;
     private String namereg;
     private String nameCountry;
     public LaboratoryShow() {
     }
-    public LaboratoryShow(String codecity, String namecity, String namereg, String nameCountry) {
-        this.codecity = codecity;
+    public LaboratoryShow(int id, String namelab, String namecity, String namereg, String nameCountry) {
+        this.id = id;
+        this.namelab = namelab;
         this.namecity = namecity;
         this.namereg = namereg;
         this.nameCountry = nameCountry;
     }
-    public String getCodecity() {
-        return codecity;
+    public int getId() {
+        return id;
     }
-    public void setCodecity(String codecity) {
-        this.codecity = codecity;
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getNamelab() {
+        return namelab;
+    }
+    public void setNamelab(String namelab) {
+        this.namelab = namelab;
     }
     public String getNamecity() {
         return namecity;
@@ -37,4 +45,5 @@ public class LaboratoryShow {
     public void setNameCountry(String nameCountry) {
         this.nameCountry = nameCountry;
     }
+
 }

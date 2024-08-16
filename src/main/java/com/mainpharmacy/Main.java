@@ -14,13 +14,14 @@ import java.awt.event.ActionListener;
 import com.mainpharmacy.activeprinciple.infraestructure.activeprincipleui.ActivePrincipleUI;
 import com.mainpharmacy.city.infraestructure.cityui.CityUI;
 import com.mainpharmacy.country.infraestructure.countryui.CountryUI;
+import com.mainpharmacy.laboratory.infraestructure.laboratoryui.LaboratoryUI;
 import com.mainpharmacy.modeadministration.infraestructure.modeadministrationui.ModeAdministrationUI;
 import com.mainpharmacy.region.infraestructure.regionui.RegionUI;
 import com.mainpharmacy.unitmeasurement.infraestructure.unitmeasurementui.UnitMeasurementUI;
 
 public class Main extends JFrame implements ActionListener{
     
-    private JButton country, city, region, modeadministration, unitmeasurement, activeprinciple;
+    private JButton country, city, region, modeadministration, unitmeasurement, activeprinciple, laboratory;
     private JLabel title, logoImg;
     public Main(){
         setLayout(null);
@@ -56,6 +57,10 @@ public class Main extends JFrame implements ActionListener{
         ImageIcon imagenOriginalactiveprincipleId = new ImageIcon(getClass().getClassLoader().getResource("images/chemical.png"));
         Image imagenRedimensionadaactiveprincipleId = imagenOriginalactiveprincipleId.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
         ImageIcon imagenactiveprincipleId = new ImageIcon(imagenRedimensionadaactiveprincipleId);
+
+        ImageIcon imagenOriginallaboratoryId = new ImageIcon(getClass().getClassLoader().getResource("images/lab.png"));
+        Image imagenRedimensionadalaboratoryId = imagenOriginallaboratoryId.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        ImageIcon imagenlaboratoryId = new ImageIcon(imagenRedimensionadalaboratoryId);
 
         logoImg = new JLabel(imagen);
         logoImg.setBounds(-60, 75, 500, 500);
@@ -121,6 +126,15 @@ public class Main extends JFrame implements ActionListener{
         activeprinciple.addActionListener(this);
         add(activeprinciple);
 
+        laboratory = new JButton("laboratory",imagenlaboratoryId);
+        laboratory.setBounds(660, 340, 120, 120);
+        laboratory.setFont(new Font("Andale Mono", Font.PLAIN, 13));
+        laboratory.setHorizontalTextPosition(JButton.CENTER);
+        laboratory.setVerticalTextPosition(JButton.BOTTOM);
+        laboratory.setForeground(new Color(0, 0, 100));
+        laboratory.addActionListener(this);
+        add(laboratory);
+
 
     }
 
@@ -170,8 +184,14 @@ public class Main extends JFrame implements ActionListener{
         }
         if (e.getSource()==activeprinciple){
             this.setVisible(false);
-            ActivePrincipleUI typeUI = new ActivePrincipleUI();
-            typeUI.startActivePrinciple();
+            ActivePrincipleUI activeUI = new ActivePrincipleUI();
+            activeUI.startActivePrinciple();
+        }
+
+        if (e.getSource()==laboratory){
+            this.setVisible(false);
+            LaboratoryUI laboratoryUI = new LaboratoryUI();
+            laboratoryUI.startLaboratory();
         }
 
     }

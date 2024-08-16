@@ -1,4 +1,4 @@
-package com.mainpharmacy.city.infraestructure;
+package com.mainpharmacy.laboratory.infraestructure;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
 
-import com.mainpharmacy.city.domain.entity.City;
-import com.mainpharmacy.city.domain.entity.CityShow;
-import com.mainpharmacy.city.domain.service.CityService;
+import com.mainpharmacy.laboratory.domain.entity.Laboratory;
+import com.mainpharmacy.laboratory.domain.entity.LaboratoryShow;
+import com.mainpharmacy.laboratory.domain.service.LaboratoryService;
 
 
-public class LaboratoryRepository implements CityService{
+public class LaboratoryRepository implements LaboratoryService{
     
         private Connection connection;
         public LaboratoryRepository() {
@@ -31,53 +31,54 @@ public class LaboratoryRepository implements CityService{
         }
     }
         @Override
-        public void createCity(City City) {
+        public void createLaboratory(Laboratory Laboratory) {
             try {
-            String query = "INSERT INTO city (codecity, namecity, codereg) VALUES (?,?,?)";
+            String query = "INSERT INTO laboratory (id, namelab, codecityreg) VALUES (?,?,?)";
             PreparedStatement ps = connection.prepareStatement(query);
 
-            ps.setString(1, City.getCodecity());
-            ps.setString(2, City.getNamecity());
-            ps.setString(3, City.getCodereg());
+            ps.setInt(1, Laboratory.getId());
+            ps.setString(2, Laboratory.getNamelab());
+            ps.setString(3, Laboratory.getCodecity());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         }
         @Override
-        public List<CityShow> findAllCity() {
-            List<CityShow> cities = new ArrayList<>();
-            String query = "SELECT c.codecity, c.namecity , r.namereg AS region, co.namecountry as Country FROM City c  JOIN region r ON r.codereg = c.codereg JOIN country co ON co.codecountry = r.codecountry";
+        public List<LaboratoryShow> findAllLaboratory() {
+            List<LaboratoryShow> laboratories = new ArrayList<>();
+            String query = "SELECT l.id, l.namelab ,c.namecity As City ,r.namereg AS Region, co.namecountry as Country FROM Laboratory l  JOIN city c ON c.codecity = l.codecityreg JOIN region r ON r.codereg = c.codereg JOIN country co ON co.codecountry = r.codecountry";
             try {
                 PreparedStatement ps = connection.prepareStatement(query);
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
-                        CityShow Cityshow = new CityShow(
-                                rs.getString("codecity"),
-                                rs.getString("namecity"),
-                                rs.getString("region"),
+                        LaboratoryShow Laboratoryshow = new LaboratoryShow(
+                                rs.getInt("id"),
+                                rs.getString("namelab"),
+                                rs.getString("City"),
+                                rs.getString("Region"),
                                 rs.getString("Country"));
-                                cities.add(Cityshow);
+                                laboratories.add(Laboratoryshow);
                     }
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            return cities;
+            return laboratories;
         }
         @Override
-        public List<City> findAllCityByRegion(String RegionID) {
-            List<City> Cities = new ArrayList<>();
-            String query = "SELECT codecity, namecity FROM City where codereg = ?";
+        public List<Laboratory> findAllLaboratoryByCity(String CityID) {
+            List<Laboratory> Cities = new ArrayList<>();
+            String query = "SELECT id, namelab FROM Laboratory where codecityreg = ?";
             try {
                 PreparedStatement ps = connection.prepareStatement(query);
-                ps.setString(1, RegionID);
+                ps.setString(1, CityID);
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
-                        City city = new City(
-                                rs.getString("codecity"),
-                                rs.getString("namecity"), RegionID);
-                                Cities.add(city);
+                        Laboratory laboratory = new Laboratory(
+                                rs.getInt("id"),
+                                rs.getString("namelab"), CityID);
+                                Cities.add(laboratory);
                     }
                 }
             } catch (SQLException e) {
@@ -86,11 +87,11 @@ public class LaboratoryRepository implements CityService{
             return Cities;
         }
         @Override
-        public Optional<City> deleteCityByName(String RegionID, String name) {
-            String query = "DELETE FROM city WHERE (codereg = ? && namecity = ?)";
+        public Optional<Laboratory> deleteLaboratoryByName(String CityID, String name) {
+            String query = "DELETE FROM laboratory WHERE (codecityreg = ? && namelab = ?)";
             try {
                 PreparedStatement ps = connection.prepareStatement(query);
-                ps.setString(1, RegionID);
+                ps.setString(1, CityID);
                 ps.setString(2, name);
                 ps.executeUpdate();
             } catch (SQLException e) {
@@ -99,19 +100,19 @@ public class LaboratoryRepository implements CityService{
             return null;
         }
         @Override
-        public Optional<City> findCityByName(String RegionID, String name) {
-            String query = "SELECT codecity, namecity, codereg FROM region WHERE (codereg = ? && namecity = ?)";
+        public Optional<Laboratory> findLaboratoryByName(String CityID, String name) {
+            String query = "SELECT id, namelab, codecityreg FROM laboratory WHERE (codecityreg = ? && namelab = ?)";
             try {
                 PreparedStatement ps = connection.prepareStatement(query);
-                ps.setString(1, RegionID);
+                ps.setString(1, CityID);
                 ps.setString(2, name);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
-                        City city = new City(
-                                rs.getString("codecity"),
-                                rs.getString("namecity"),
-                                rs.getString("codereg"));
-                        return Optional.of(city);
+                        Laboratory laboratory = new Laboratory(
+                                rs.getInt("id"),
+                                rs.getString("namelab"),
+                                rs.getString("codecityreg"));
+                        return Optional.of(laboratory);
                     }
     
                 }
@@ -121,18 +122,18 @@ public class LaboratoryRepository implements CityService{
             return Optional.empty();
         }
         @Override
-        public Optional<City> findCityByCode(String CityID) {
-            String query = "SELECT codecity, namecity, codereg FROM City WHERE codecity=?";
+        public Optional<Laboratory> findLaboratoryByCode(int LaboratoryID) {
+            String query = "SELECT id, namelab, codecityreg FROM Laboratory WHERE id=?";
             try {
                 PreparedStatement ps = connection.prepareStatement(query);
-                ps.setString(1, CityID);
+                ps.setInt(1, LaboratoryID);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
-                        City City = new City(
-                                rs.getString("codecity"),
-                                rs.getString("namecity"),
-                                rs.getString("codereg"));
-                        return Optional.of(City);
+                        Laboratory Laboratory = new Laboratory(
+                                rs.getInt("id"),
+                                rs.getString("namelab"),
+                                rs.getString("codecityreg"));
+                        return Optional.of(Laboratory);
                     }
     
                 }
@@ -143,13 +144,13 @@ public class LaboratoryRepository implements CityService{
         
         }
         @Override
-        public void updateCity(City City) {
-            String query = "UPDATE City SET codereg = ?, namecity = ? WHERE codecity = ?";
+        public void updateLaboratory(Laboratory Laboratory) {
+            String query = "UPDATE Laboratory SET codecityreg = ?, namelab = ? WHERE id = ?";
             try {
                 PreparedStatement ps = connection.prepareStatement(query);
-                ps.setString(1, City.getCodereg());
-                ps.setString(2, City.getNamecity());
-                ps.setString(3, City.getCodecity());
+                ps.setString(1, Laboratory.getCodecity());
+                ps.setString(2, Laboratory.getNamelab());
+                ps.setInt(3, Laboratory.getId());
                 ps.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();

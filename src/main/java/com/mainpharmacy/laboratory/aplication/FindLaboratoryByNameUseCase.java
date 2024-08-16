@@ -1,18 +1,18 @@
-package com.mainpharmacy.city.aplication;
+package com.mainpharmacy.laboratory.aplication;
 
 import java.util.Optional;
 
-import com.mainpharmacy.city.domain.entity.City;
-import com.mainpharmacy.city.domain.service.CityService;
+import com.mainpharmacy.laboratory.domain.entity.Laboratory;
+import com.mainpharmacy.laboratory.domain.service.LaboratoryService;
 
 public class FindLaboratoryByNameUseCase {
-    private final CityService cityService;
+    private final LaboratoryService laboratoryService;
 
-    public FindLaboratoryByNameUseCase(CityService cityService) {
-        this.cityService = cityService;
+    public FindLaboratoryByNameUseCase(LaboratoryService laboratoryService) {
+        this.laboratoryService = laboratoryService;
     }
 
-    public Optional<City> execute(String RegionID, String Name ) {
-        return cityService.findCityByName(RegionID, Name);
+    public Optional<Laboratory> execute(String CityID, String Name ) {
+        return laboratoryService.findLaboratoryByName(CityID, Name);
     }
 }

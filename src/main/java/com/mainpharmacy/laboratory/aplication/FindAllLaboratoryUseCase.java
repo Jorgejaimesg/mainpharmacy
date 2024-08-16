@@ -1,19 +1,19 @@
-package com.mainpharmacy.city.aplication;
+package com.mainpharmacy.laboratory.aplication;
 
 import java.util.List;
 
-import com.mainpharmacy.city.domain.entity.CityShow;
-import com.mainpharmacy.city.domain.service.CityService;
+import com.mainpharmacy.laboratory.domain.entity.LaboratoryShow;
+import com.mainpharmacy.laboratory.domain.service.LaboratoryService;
 
 public class FindAllLaboratoryUseCase {
-        private final CityService cityService;
+        private final LaboratoryService laboratoryService;
 
-    public FindAllLaboratoryUseCase(CityService cityService) {
-        this.cityService = cityService;
+    public FindAllLaboratoryUseCase(LaboratoryService laboratoryService) {
+        this.laboratoryService = laboratoryService;
     }
 
-    public List<CityShow> findAllCity() {
-        return cityService.findAllCity();
+    public List<LaboratoryShow> findAllLaboratory() {
+        return laboratoryService.findAllLaboratory();
     }
 
 }

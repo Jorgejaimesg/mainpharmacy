@@ -1,18 +1,18 @@
-package com.mainpharmacy.city.domain.service;
+package com.mainpharmacy.laboratory.domain.service;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.mainpharmacy.city.domain.entity.City;
-import com.mainpharmacy.city.domain.entity.CityShow;
+import com.mainpharmacy.laboratory.domain.entity.Laboratory;
+import com.mainpharmacy.laboratory.domain.entity.LaboratoryShow;
 
 public interface LaboratoryService {
-    void createCity(City City);
-    List<CityShow> findAllCity();
-    List<City> findAllCityByRegion(String RegionID);
-    Optional<City> deleteCityByName(String RegionID, String name);
-    Optional<City> findCityByName(String RegionID, String name);
-    Optional<City> findCityByCode(String CityID);
-    void updateCity(City City);
+    void createLaboratory(Laboratory Laboratory);
+    List<LaboratoryShow> findAllLaboratory();
+    List<Laboratory> findAllLaboratoryByCity(String CityID);
+    Optional<Laboratory> deleteLaboratoryByName(String CityID, String name);
+    Optional<Laboratory> findLaboratoryByName(String CityID, String name);
+    Optional<Laboratory> findLaboratoryByCode(int id);
+    void updateLaboratory(Laboratory Laboratory);
 
 }

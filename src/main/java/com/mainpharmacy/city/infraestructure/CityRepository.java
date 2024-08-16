@@ -100,7 +100,7 @@ public class CityRepository implements CityService{
         }
         @Override
         public Optional<City> findCityByName(String RegionID, String name) {
-            String query = "SELECT codecity, namecity, codereg FROM region WHERE (codereg = ? && namecity = ?)";
+            String query = "SELECT codecity, namecity, codereg FROM city WHERE (codereg = ? && namecity = ?)";
             try {
                 PreparedStatement ps = connection.prepareStatement(query);
                 ps.setString(1, RegionID);

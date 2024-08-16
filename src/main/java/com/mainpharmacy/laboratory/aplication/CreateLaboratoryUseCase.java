@@ -1,16 +1,16 @@
-package com.mainpharmacy.city.aplication;
+package com.mainpharmacy.laboratory.aplication;
 
-import com.mainpharmacy.city.domain.entity.City;
-import com.mainpharmacy.city.domain.service.CityService;
+import com.mainpharmacy.laboratory.domain.entity.Laboratory;
+import com.mainpharmacy.laboratory.domain.service.LaboratoryService;
 
 public class CreateLaboratoryUseCase {
-    private final CityService cityService;
+    private final LaboratoryService laboratoryService;
 
-    public CreateLaboratoryUseCase(CityService cityService){
-        this.cityService = cityService;
+    public CreateLaboratoryUseCase(LaboratoryService laboratoryService){
+        this.laboratoryService = laboratoryService;
     }
 
-    public void execute(City city){
-        cityService.createCity(city);
+    public void execute(Laboratory laboratory){
+        laboratoryService.createLaboratory(laboratory);
 }
 }

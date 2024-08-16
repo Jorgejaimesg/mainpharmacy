@@ -1,8 +1,9 @@
-package com.mainpharmacy.city.infraestructure.cityui;
+package com.mainpharmacy.laboratory.infraestructure.laboratoryui;
 
 import java.util.List;
 
-import com.mainpharmacy.city.aplication.CreateCityUseCase;
+import com.mainpharmacy.city.aplication.FindCityByNameUseCase;
+import com.mainpharmacy.city.aplication.FindCityByRegionUseCase;
 import com.mainpharmacy.city.domain.entity.City;
 import com.mainpharmacy.city.domain.service.CityService;
 import com.mainpharmacy.city.infraestructure.CityRepository;
@@ -11,7 +12,10 @@ import com.mainpharmacy.country.aplication.FindCountryByNameUseCase;
 import com.mainpharmacy.country.domain.entity.Country;
 import com.mainpharmacy.country.domain.service.CountryService;
 import com.mainpharmacy.country.infraestructure.CountryRepository;
-
+import com.mainpharmacy.laboratory.aplication.CreateLaboratoryUseCase;
+import com.mainpharmacy.laboratory.domain.entity.Laboratory;
+import com.mainpharmacy.laboratory.domain.service.LaboratoryService;
+import com.mainpharmacy.laboratory.infraestructure.LaboratoryRepository;
 import com.mainpharmacy.region.aplication.FindAllregionUseCase;
 import com.mainpharmacy.region.aplication.FindRegionByCountryUseCase;
 import com.mainpharmacy.region.aplication.FindRegionByNameUseCase;
@@ -35,16 +39,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class AddLaboratoryUI extends JFrame implements ActionListener {
-    private JLabel logoImg, title, labelName, labelCountry, labelCode, labelRegion;
+    private JLabel logoImg, title, labelName, labelCountry, labelRegion, labelCity;
     private JButton addButton, backButton;
-    private JTextField Name, Code;
-    private JComboBox<String> Countrylist, Region;
-    private String countryID;
+    private JTextField Name;
+    private JComboBox<String> Countrylist, Regionlist, Citylist;
+    private String countryID, RegionID;
 
     RegionService RegionService = new RegionRepository();
     CountryService CountryService = new CountryRepository();
     CityService cityService = new CityRepository();
-    CreateCityUseCase createCityUseCase = new CreateCityUseCase(cityService);
+    LaboratoryService laboratoryService = new LaboratoryRepository();
+    CreateLaboratoryUseCase createLaboratoryUseCase = new CreateLaboratoryUseCase(laboratoryService);
+    FindCityByRegionUseCase findCityByRegionUseCase = new FindCityByRegionUseCase(cityService);
+    FindCityByNameUseCase findCityByNameUseCase = new FindCityByNameUseCase(cityService);
     FindAllCountryUseCase findAllCountryUseCase = new FindAllCountryUseCase(CountryService);
     FindCountryByNameUseCase findCountryByNameUseCase = new FindCountryByNameUseCase(CountryService);
     List<Country> countries = findAllCountryUseCase.findAllCountry();
@@ -56,11 +63,11 @@ public class AddLaboratoryUI extends JFrame implements ActionListener {
 
     setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Add City");
+        setTitle("Add Lab");
         getContentPane().setBackground(new Color(200, 200, 200));
         setIconImage(new ImageIcon(getClass().getClassLoader().getResource("images/icon.png")).getImage());
 
-        ImageIcon imagenOriginal = new ImageIcon(getClass().getClassLoader().getResource("images/CityImg.png"));
+        ImageIcon imagenOriginal = new ImageIcon(getClass().getClassLoader().getResource("images/lab.png"));
         Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
         ImageIcon imagen = new ImageIcon(imagenRedimensionada);
 
@@ -68,23 +75,11 @@ public class AddLaboratoryUI extends JFrame implements ActionListener {
         logoImg.setBounds(60, 20, 90, 90);
         add(logoImg);
 
-        title = new JLabel("Add City");
+        title = new JLabel("Add Lab");
         title.setBounds(250, 20, 400, 90);
         title.setFont(new Font("Andale Mono", Font.BOLD, 30));
         title.setForeground(new Color(0, 0, 100));
         add(title);
-
-        labelCode = new JLabel("Code : ");
-        labelCode.setBounds(35, 210, 150, 30);
-        labelCode.setFont(new Font("Andale Mono", Font.PLAIN, 20));
-        labelCode.setForeground(new Color(0, 0, 100));
-        add(labelCode);
-
-        Code = new JTextField();
-        Code.setBounds(190, 210, 255, 30);
-        Code.setFont(new Font("Andale Mono", Font.PLAIN, 20));
-        Code.setForeground(new Color(0, 0, 100));
-        add(Code);
 
         labelName = new JLabel("Name : ");
         labelName.setBounds(35, 250, 150, 30);
@@ -120,11 +115,11 @@ public class AddLaboratoryUI extends JFrame implements ActionListener {
         labelRegion.setForeground(new Color(0, 0, 100));
         add(labelRegion);
 
-        Region = new JComboBox<String>();
-        Region.setBounds(190, 170, 255, 30);
-        Region.setFont(new Font("Andale Mono", Font.PLAIN, 20));
-        Region.setForeground(new Color(0, 0, 100));
-        add(Region);
+        Regionlist = new JComboBox<String>();
+        Regionlist.setBounds(190, 170, 255, 30);
+        Regionlist.setFont(new Font("Andale Mono", Font.PLAIN, 20));
+        Regionlist.setForeground(new Color(0, 0, 100));
+        add(Regionlist);
         Countrylist.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -132,40 +127,70 @@ public class AddLaboratoryUI extends JFrame implements ActionListener {
             }
         });
 
+        labelCity = new JLabel("City : ");
+        labelCity.setBounds(35, 210, 150, 30);
+        labelCity.setFont(new Font("Andale Mono", Font.PLAIN, 20));
+        labelCity.setForeground(new Color(0, 0, 100));
+        add(labelCity);
+
+        Citylist = new JComboBox<String>();
+        Citylist.setBounds(190, 210, 255, 30);
+        Citylist.setFont(new Font("Andale Mono", Font.PLAIN, 20));
+        Citylist.setForeground(new Color(0, 0, 100));
+        add(Citylist);
+        Regionlist.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                actualizarCity();
+            }
+        });
+
 
         
 
         addButton = new JButton("Add");
-        addButton.setBounds(125, 300, 120, 30);
+        addButton.setBounds(125, 310, 120, 30);
         addButton.setFont(new Font("Andale Mono", Font.PLAIN, 20));
         addButton.setForeground(new Color(0, 0, 100));
         addButton.addActionListener(this);
         add(addButton);
 
         backButton = new JButton("Go Back");
-        backButton.setBounds(275, 300, 120, 30);
+        backButton.setBounds(275, 310, 120, 30);
         backButton.setFont(new Font("Andale Mono", Font.PLAIN, 20));
         backButton.setForeground(new Color(0, 0, 100));
         backButton.addActionListener(this);
         add(backButton);
     }
-    public void startAddCity() {
-        AddLaboratoryUI addCityUI = new AddLaboratoryUI();
-        addCityUI.setBounds(0, 0, 500, 400);
-        addCityUI.setVisible(true);
-        addCityUI.setResizable(false);
-        addCityUI.setLocationRelativeTo(null);
+    public void startAddLaboratory() {
+        AddLaboratoryUI addLaboratoryUI = new AddLaboratoryUI();
+        addLaboratoryUI.setBounds(0, 0, 500, 400);
+        addLaboratoryUI.setVisible(true);
+        addLaboratoryUI.setResizable(false);
+        addLaboratoryUI.setLocationRelativeTo(null);
     }
 
     private void actualizarRegion() {
-        Region.removeAllItems(); 
+        Regionlist.removeAllItems(); 
         String countryName = Countrylist.getSelectedItem().toString();
         Optional<Country> countryFound = findCountryByNameUseCase.findCountryByName(countryName);
         if (countryFound.isPresent()){
         this.countryID =countryFound.get().getCodeCountry();
         List<Region> Regions = findRegionByCountryUseCase.findAllRegionByCountry(countryID);
         for(Region Regionitem : Regions){
-            Region.addItem(Regionitem.getNamereg());
+            Regionlist.addItem(Regionitem.getNamereg());
+        };
+    }}
+
+    private void actualizarCity() {
+        Citylist.removeAllItems(); 
+        String RegionName = Regionlist.getSelectedItem().toString();
+        Optional<Region> RegionFound = findRegionByNameUseCase.execute(countryID, RegionName);
+        if (RegionFound.isPresent()){
+        this.RegionID =RegionFound.get().getCodereg();
+        List<City> Citys = findCityByRegionUseCase.findAllCityByRegion(RegionID);
+        for(City Cityitem : Citys){
+            Citylist.addItem(Cityitem.getNamecity());
         };
     }}
 
@@ -173,40 +198,30 @@ public class AddLaboratoryUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==addButton){
             try {
-                String countryName = Countrylist.getSelectedItem().toString();
-                Optional<Country> countryFound = findCountryByNameUseCase.findCountryByName(countryName);
-                if(countryFound.isPresent()){
-                    String RegionName = Region.getSelectedItem().toString();
-                    String countryCode = countryFound.get().getCodeCountry();
-                    Optional<Region> RegionFound = findRegionByNameUseCase.execute(countryCode, RegionName);
-                    if(RegionFound.isPresent()){
-
-                        String RegionID = RegionFound.get().getCodereg();
-                        System.out.println(RegionID);
-                        String CityName = Name.getText().trim();
-                        String Codecity = Code.getText().trim().toUpperCase();
-                        if (CityName.length()>0){
-                            City newCity = new City();
+                String cityName = Citylist.getSelectedItem().toString();
+                String LabName = Name.getText().trim();
+                System.out.println(this.RegionID);
+                System.out.println(cityName);
+                Optional<City> cityFound = findCityByNameUseCase.execute(RegionID, cityName);
+                if(cityFound.isPresent()){
+                    String cityCode = cityFound.get().getCodecity();
+                    if (LabName.length()>0){
+                        Laboratory newLaboratory = new Laboratory();
+                        newLaboratory.setNamelab(LabName);
+                        newLaboratory.setCodecity(cityCode);
                         
-                            newCity.setCodecity(Codecity);
-                            newCity.setNamecity(CityName);
-                            newCity.setCodereg(RegionID);
-                            
-                            createCityUseCase.execute(newCity);
-                        
-                        JOptionPane.showMessageDialog(this, "City added successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        Name.setText("");
-                        Code.setText("");
-                        Region.setSelectedItem("");
-                        Countrylist.setSelectedItem("");
-                        } else {
-                            JOptionPane.showMessageDialog(this, "Invalid City", "Error", JOptionPane.ERROR_MESSAGE);
-        
-                        }
+                        createLaboratoryUseCase.execute(newLaboratory);
+                        JOptionPane.showMessageDialog(this, "Laboratory added successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
                     }
-
-
+                    
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid City", "Error", JOptionPane.ERROR_MESSAGE);
+                    
                 }
+                Name.setText("");
+                Countrylist.setSelectedItem("");
+                Citylist.removeAll();
+                Regionlist.removeAllItems(); 
                 
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -215,8 +230,8 @@ public class AddLaboratoryUI extends JFrame implements ActionListener {
 
     if(e.getSource()==backButton){
         this.setVisible(false);
-        LaboratoryUI CityUI = new LaboratoryUI();
-        CityUI.startCity();
+        LaboratoryUI LaboratoryUI = new LaboratoryUI();
+        LaboratoryUI.startLaboratory();
     }
     }
 
