@@ -39,9 +39,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class AddPharmacyUI extends JFrame implements ActionListener {
-    private JLabel logoImg, title, labelName, labelCountry, labelRegion, labelCity;
+    private JLabel logoImg, title, labelName, labelCountry, labelRegion, labelCity, labeladdress, labellong, labellat, labellogo;
     private JButton addButton, backButton;
-    private JTextField Name;
+    private JTextField Name, txtaddress, txtlong, txtlat, txtlogo;
     private JComboBox<String> Countrylist, Regionlist, Citylist;
     private String countryID, RegionID;
 
@@ -145,8 +145,53 @@ public class AddPharmacyUI extends JFrame implements ActionListener {
             }
         });
 
+        labeladdress = new JLabel("Address : ");
+        labeladdress.setBounds(400, 130, 150, 30);
+        labeladdress.setFont(new Font("Andale Mono", Font.PLAIN, 20));
+        labeladdress.setForeground(new Color(0, 0, 100));
+        add(labeladdress);
 
+        txtaddress = new JTextField();
+        txtaddress.setBounds(555, 130, 255, 30);
+        txtaddress.setFont(new Font("Andale Mono", Font.PLAIN, 20));
+        txtaddress.setForeground(new Color(0, 0, 100));
+        add(txtaddress);
+
+        labellong = new JLabel("Address : ");
+        labellong.setBounds(400, 170, 150, 30);
+        labellong.setFont(new Font("Andale Mono", Font.PLAIN, 20));
+        labellong.setForeground(new Color(0, 0, 100));
+        add(labellong);
+
+        txtlong = new JTextField();
+        txtlong.setBounds(555, 170, 255, 30);
+        txtlong.setFont(new Font("Andale Mono", Font.PLAIN, 20));
+        txtlong.setForeground(new Color(0, 0, 100));
+        add(txtlong);
         
+        labellat = new JLabel("Address : ");
+        labellat.setBounds(400, 210, 150, 30);
+        labellat.setFont(new Font("Andale Mono", Font.PLAIN, 20));
+        labellat.setForeground(new Color(0, 0, 100));
+        add(labellat);
+
+        txtlat = new JTextField();
+        txtlat.setBounds(555, 210, 255, 30);
+        txtlat.setFont(new Font("Andale Mono", Font.PLAIN, 20));
+        txtlat.setForeground(new Color(0, 0, 100));
+        add(txtlat);
+        
+        labellogo = new JLabel("Address : ");
+        labellogo.setBounds(400, 210, 150, 30);
+        labellogo.setFont(new Font("Andale Mono", Font.PLAIN, 20));
+        labellogo.setForeground(new Color(0, 0, 100));
+        add(labellogo);
+
+        txtlogo = new JTextField();
+        txtlogo.setBounds(555, 210, 255, 30);
+        txtlogo.setFont(new Font("Andale Mono", Font.PLAIN, 20));
+        txtlogo.setForeground(new Color(0, 0, 100));
+        add(txtlogo);
 
         addButton = new JButton("Add");
         addButton.setBounds(125, 310, 120, 30);
@@ -164,7 +209,7 @@ public class AddPharmacyUI extends JFrame implements ActionListener {
     }
     public void startAddPharmacy() {
         AddPharmacyUI addPharmacyUI = new AddPharmacyUI();
-        addPharmacyUI.setBounds(0, 0, 500, 400);
+        addPharmacyUI.setBounds(0, 0, 1000, 400);
         addPharmacyUI.setVisible(true);
         addPharmacyUI.setResizable(false);
         addPharmacyUI.setLocationRelativeTo(null);
@@ -199,15 +244,23 @@ public class AddPharmacyUI extends JFrame implements ActionListener {
         if (e.getSource()==addButton){
             try {
                 String cityName = Citylist.getSelectedItem().toString();
-                String LabName = Name.getText().trim();
+                String namefarmacy = Name.getText().trim();
+                String address = txtaddress.getText().trim();
+                Float longfarmacy = Float.parseFloat(txtlong.getText().trim());
+                Float latfarmacy = Float.parseFloat(txtlat.getText().trim());
+                String logofarmacy = txtlogo.getText().trim();
                 System.out.println(this.RegionID);
                 System.out.println(cityName);
                 Optional<City> cityFound = findCityByNameUseCase.execute(RegionID, cityName);
                 if(cityFound.isPresent()){
                     String cityCode = cityFound.get().getCodecity();
-                    if (LabName.length()>0){
+                    if (namefarmacy.length()>0){
                         Pharmacy newPharmacy = new Pharmacy();
-                        newPharmacy.setNamelab(LabName);
+                        newPharmacy.setNamepharmacy(logofarmacy);(namefarmacy);
+                        newPharmacy.setCodecity(cityCode);
+                        newPharmacy.setAddrespharmacy(address);
+                        newPharmacy.setLongfarmacy(cityCode);
+                        newPharmacy.setCodecity(cityCode);
                         newPharmacy.setCodecity(cityCode);
                         
                         createPharmacyUseCase.execute(newPharmacy);
