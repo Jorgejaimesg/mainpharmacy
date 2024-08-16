@@ -31,7 +31,7 @@ public class Main extends JFrame implements ActionListener{
         setIconImage(new ImageIcon(getClass().getClassLoader().getResource("images/icon.png")).getImage());
 
         ImageIcon imagenOriginal = new ImageIcon(getClass().getClassLoader().getResource("images/icon.png"));
-        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+        Image imagenRedimensionada = imagenOriginal.getImage().getScaledInstance(280, 280, Image.SCALE_SMOOTH);
         ImageIcon imagen = new ImageIcon(imagenRedimensionada);
 
         ImageIcon imagenOriginalCountry = new ImageIcon(getClass().getClassLoader().getResource("images/countryimg.png"));
@@ -63,7 +63,7 @@ public class Main extends JFrame implements ActionListener{
         ImageIcon imagenlaboratoryId = new ImageIcon(imagenRedimensionadalaboratoryId);
 
         logoImg = new JLabel(imagen);
-        logoImg.setBounds(-60, 75, 500, 500);
+        logoImg.setBounds(-80, 75, 500, 500);
         add(logoImg);
 
         title = new JLabel("George's Pharmacy");
@@ -73,7 +73,7 @@ public class Main extends JFrame implements ActionListener{
         add(title);
 
         country = new JButton("Country",imagenCountry);
-        country.setBounds(380, 200, 120, 120);
+        country.setBounds(300, 200, 120, 120);
         country.setFont(new Font("Andale Mono", Font.PLAIN, 13));
         country.setHorizontalTextPosition(JButton.CENTER);
         country.setVerticalTextPosition(JButton.BOTTOM);
@@ -82,7 +82,7 @@ public class Main extends JFrame implements ActionListener{
         add(country);
         
         city = new JButton("City", imagenCity);
-        city.setBounds(520, 200, 120, 120);
+        city.setBounds(440, 200, 120, 120);
         city.setFont(new Font("Andale Mono", Font.PLAIN, 13));
         city.setHorizontalTextPosition(JButton.CENTER);
         city.setVerticalTextPosition(JButton.BOTTOM);
@@ -91,7 +91,7 @@ public class Main extends JFrame implements ActionListener{
         add(city);
 
         region = new JButton("Region",imagenRegion);
-        region.setBounds(660, 200, 120, 120);
+        region.setBounds(580, 200, 120, 120);
         region.setFont(new Font("Andale Mono", Font.PLAIN, 13));
         region.setHorizontalTextPosition(JButton.CENTER);
         region.setVerticalTextPosition(JButton.BOTTOM);
@@ -100,7 +100,7 @@ public class Main extends JFrame implements ActionListener{
         add(region);
 
         modeadministration = new JButton("Methods",imagenModeAdministrationId);
-        modeadministration.setBounds(790, 200, 120, 120);
+        modeadministration.setBounds(720, 200, 120, 120);
         modeadministration.setFont(new Font("Andale Mono", Font.PLAIN, 13));
         modeadministration.setHorizontalTextPosition(JButton.CENTER);
         modeadministration.setVerticalTextPosition(JButton.BOTTOM);
@@ -109,7 +109,7 @@ public class Main extends JFrame implements ActionListener{
         add(modeadministration);
 
         unitmeasurement = new JButton("Units",imagenunitmeasurementId);
-        unitmeasurement.setBounds(380, 340, 120, 120);
+        unitmeasurement.setBounds(300, 340, 120, 120);
         unitmeasurement.setFont(new Font("Andale Mono", Font.PLAIN, 13));
         unitmeasurement.setHorizontalTextPosition(JButton.CENTER);
         unitmeasurement.setVerticalTextPosition(JButton.BOTTOM);
@@ -118,7 +118,7 @@ public class Main extends JFrame implements ActionListener{
         add(unitmeasurement);
 
         activeprinciple = new JButton("Actives",imagenactiveprincipleId);
-        activeprinciple.setBounds(520, 340, 120, 120);
+        activeprinciple.setBounds(440, 340, 120, 120);
         activeprinciple.setFont(new Font("Andale Mono", Font.PLAIN, 13));
         activeprinciple.setHorizontalTextPosition(JButton.CENTER);
         activeprinciple.setVerticalTextPosition(JButton.BOTTOM);
@@ -127,7 +127,7 @@ public class Main extends JFrame implements ActionListener{
         add(activeprinciple);
 
         laboratory = new JButton("laboratory",imagenlaboratoryId);
-        laboratory.setBounds(660, 340, 120, 120);
+        laboratory.setBounds(580, 340, 120, 120);
         laboratory.setFont(new Font("Andale Mono", Font.PLAIN, 13));
         laboratory.setHorizontalTextPosition(JButton.CENTER);
         laboratory.setVerticalTextPosition(JButton.BOTTOM);
@@ -145,7 +145,7 @@ public class Main extends JFrame implements ActionListener{
 
     public void startMenu() {
         Main Main = new Main();
-        Main.setBounds(0, 0, 1000, 600);
+        Main.setBounds(0, 0, 1100, 600);
         Main.setVisible(true);
         Main.setResizable(false);
         Main.setLocationRelativeTo(null);
